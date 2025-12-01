@@ -1,2 +1,52 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+*
+{
+  margin:0;
+  padding: 0;
+  font-family: 'Poppins',sans-serif;
+  box-sizing: border-box;
+}
+
+.inputfield
+{
+  background: #eaeaea;
+  margin:25px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.inputfield input
+{
+  width: 100%;
+  background: transparent;
+  border:0;
+  outline:0;
+  padding:18px 15px;
+  color:#999;
+}
+
+.inputfield i
+{
+  margin-left: 15px;
+  color:#999;
+}
+
+p
+{
+  color:black;
+}
+
+.buton
+{
+  margin-top: 20px;
+  height:40px
+}
+
+.namepara
+{
+  margin-right: 10px;
+  color:white;
+}
