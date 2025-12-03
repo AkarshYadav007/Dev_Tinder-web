@@ -1,0 +1,315 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+*
+{
+  margin:0;
+  padding: 0;
+  font-family: 'Poppins',sans-serif;
+  box-sizing: border-box;
+}
+
+.inputfield
+{
+  background: #eaeaea;
+  margin:25px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.inputfield input
+{
+  width: 100%;
+  background: transparent;
+  border:0;
+  outline:0;
+  padding:18px 15px;
+  color:#999;
+}
+
+.inputfield i
+{
+  margin-left: 15px;
+  color:#999;
+}
+
+p
+{
+  color:black;
+}
+
+.buton
+{
+  margin-top: 20px;
+  height:40px
+}
+
+.namepara
+{
+  margin-right: 10px;
+  color:white;
+}
+
+.paro
+{
+  color: red;
+}
+
+.user-card-container
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.useredit-card-container
+{
+  height:500px;
+  margin-bottom: 50px;
+}
+
+.user-card
+{
+  height: 450px;
+  width:350px;
+  border-radius: 10px;
+  background-color:#11001c;
+  margin-top: 50px;
+}
+
+.useredit-card
+{
+  height:400px;
+  width:350px;
+  border-radius: 10px;
+  background-color:#10002b;
+  
+}
+
+.user-image
+{
+  background-color: black;
+  width:95%;
+  height:55%;
+  background-image: url("astik.jpeg");
+  background-position:  center 400px;
+  background-size:cover;
+  margin-left: 8.75px;
+  margin-top: 8.75px;
+  border-radius:10px;
+}
+
+.useredit-image
+{
+  width:95%;
+  height:55%;
+  background-image: url("astik.jpeg");
+  background-position:  center 400px;
+  background-size:cover;
+  margin-left: 8.75px;
+  margin-top: 30px;
+  border-radius:10px; 
+}
+
+.username
+{color:#caf0f8;
+margin-left:8.75px;
+margin-top:10px;}
+
+.interestbtn
+{
+  background-color: #ffafcc;
+  color:#023047;
+  margin-left: 20px;
+  width:40%;
+  height:100%;
+  border-radius: 10px;
+}
+
+.ignorebtn
+{
+  background-color:#800e13;
+  color: #ffb600;
+  width:40%;
+  margin-left:20px;
+  height:100%;
+  border-radius: 10px;
+}
+
+.user-button
+{
+  height:40px;
+  margin-top: 50px;
+}
+
+.user-button i 
+{
+  color:#8338ec;
+  margin-left: 3px;
+}
+
+.logo
+{
+  width: 120px;
+  margin-left: 20px;
+  margin-right: 1050px;
+  color: #ffb600;
+}
+
+.profile-edits div
+{
+  border:1px solid white;
+  width:700px;
+  margin-left:10px;
+  height:40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.profile-edits div:hover
+{
+  border:2px solid yellowgreen;
+}
+
+.profile-edits input
+{
+  width: 80%;
+  height: 100%;
+  margin-left:20px;
+}
+
+.profile-edits input:focus
+{
+  outline: none;
+  box-shadow: none;
+}
+
+.profile-button
+{
+  background-color: #580aff;
+  margin-right: 5px;
+  height:35px;
+  width:50px;
+  border-radius: 15px;
+}
+
+.profile-button.editing
+{
+  background-color: yellowgreen;
+  color: black;
+}
+
+.profile-button:hover
+{
+  border: 1px solid white;
+}
+
+.change-save-button
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.change-save-button button
+{
+  background-color:#580aff;
+  color:#0aff99;
+  height:50px;
+  width:200px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.change-save-button button:hover
+{
+  border:2px solid white;
+}
+
+.profile-box
+{
+  background-color: greenyellow;
+  color:black;
+  width:130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-size: 18px;
+}
+
+.profile-container
+{
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  align-items: center;
+  background-color: #0aff99;
+  margin-top: 60px;
+}
+
+.para-pro
+{color: white;
+font-size: 12px;
+margin-top: 10px;
+margin-left: 20px;}
+
+.profile-mc-div
+{
+  margin-left: 150px;
+  height: 450px;
+}
+
+
+.temp-3
+{
+  display: flex;
+  height:550px;
+}
+
+.temp-1
+{
+  margin-top: 40px;
+}
+.navbar
+{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #2c2c2c 25%, #3a3a3a 50%, #2c2c2c 75%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: 6px;
+}
+
+.skeleton-text {
+  margin-bottom: 8px;
+}
+
+.skeleton-box {
+  margin-top: 10px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+
+
+

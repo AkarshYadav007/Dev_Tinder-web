@@ -2,12 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addUser } from "./utils/userSlice";
+import { addUser } from "../utils/userSlice";
 import { useNavigate } from 'react-router-dom';
  
 const Login = () => {
   const [emailId, setemailId] = useState("");
-const [Password, setPassword] = useState("");
+const [password, setPassword] = useState("");
+const [error,seterror] = useState("");
 
 const dispatch = useDispatch()
 
@@ -15,15 +16,20 @@ const navigate = useNavigate()
 
 const handleLogin = async () => 
   {
+    if (!emailId || !password) {
+  return seterror("Please enter email and password.");
+}
+
    try{const res = await axios.post("http://localhost:3000/login",{Email: emailId,
-  Password: Password},{withCredentials: true})
-  const datu = res.data
+  Password: password},{withCredentials: true})
+  const datu = res?.data
   dispatch(addUser(datu))
-  navigate("/feed")
+  navigate("/")
   }
    catch(err)
    {
-    console.error(err);
+    const msg = err?.response?.data.replace("ERROR: ", "") || "Something went wrong";
+    seterror(msg);
    }
   }
   return (
@@ -43,7 +49,7 @@ const handleLogin = async () =>
 
         {/* Email */}
         <div className="inputfield">
-          <i class="fa-solid fa-user"></i>
+          <i className="fa-solid fa-user"></i>
           <input
             type="email"
             placeholder="Enter Email"
@@ -53,7 +59,7 @@ const handleLogin = async () =>
 
         {/* Password */}
         <div className="inputfield">
-          <i class="fa-solid fa-key"></i>
+          <i className="fa-solid fa-key"></i>
           <input
             type="password"
             placeholder="Enter Password"
@@ -62,6 +68,7 @@ const handleLogin = async () =>
         </div>
 
         <p>Do not have an account?<a href='#'> Click Here!</a></p>
+        <p className="paro">{error}</p>
 
         {/* Button */}
         <div className="buton">
