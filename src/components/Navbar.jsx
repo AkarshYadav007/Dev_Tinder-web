@@ -1,19 +1,31 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { removeUser } from "../utils/userSlice";
+import { removeConnect } from '../utils/connectionSlice';
+import { removeFeed } from '../utils/feedSlice';
+import { removeRequests } from '../utils/requestSlice';
 
 const Navbar = () => {
 
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const fetchdatu = async() => 
     {
       await axios.post("http://localhost:3000/logout",{},{withCredentials:true})
       dispatch(removeUser())
+      dispatch(removeFeed())
+      dispatch(removeConnect())
+      dispatch(removeRequests())
     }
+
+    const handleLogout = async () => {
+    await fetchdatu();
+    navigate("/login");
+  };
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -34,13 +46,17 @@ const Navbar = () => {
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li>
-          <Link to="/profile" className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </Link>
+          <Link to="/profile" className="justify-between">Profile</Link>
         </li>
-        <li><a>Settings</a></li>
-        <li><Link to="/login" onClick={fetchdatu}>Logout</Link></li>
+        <li>
+          <Link to="/requests" className="justify-between">Requests</Link>
+        </li>
+        <li>
+          <Link to="/connections">Connections</Link>
+          </li>
+        <li>
+          <button onClick={handleLogout}>Logout</button>
+        </li>
       </ul>
     </div>
   </div>)}

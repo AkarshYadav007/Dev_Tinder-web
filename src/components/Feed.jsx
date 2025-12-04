@@ -19,7 +19,7 @@ const Feed = () => {
 
   useEffect(() => {getfeed()},[])
   return datu && (
-    <div><UserCard user={datu[6]}/></div>
+    <div><UserCard user={datu[0]}/></div>
   )
 }
 
