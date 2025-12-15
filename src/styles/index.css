@@ -39,10 +39,11 @@ p
   color:black;
 }
 
-.buton
+.in-up-button
 {
   margin-top: 20px;
-  height:40px
+  height:40px;
+  margin-bottom: 20px;
 }
 
 .namepara
@@ -77,6 +78,7 @@ p
   border-radius: 10px;
   background-color:#11001c;
   margin-top: 50px;
+  position: relative;
 }
 
 .useredit-card
@@ -93,7 +95,6 @@ p
   background-color: black;
   width:95%;
   height:55%;
-  background-image: url("astik.jpeg");
   background-position:  center 400px;
   background-size:cover;
   margin-left: 8.75px;
@@ -105,18 +106,26 @@ p
 {
   width:95%;
   height:55%;
-  background-image: url("astik.jpeg");
   background-position:  center 400px;
   background-size:cover;
+  background-color: black;
   margin-left: 8.75px;
   margin-top: 30px;
-  border-radius:10px; 
+  border-radius:10px;
 }
 
 .username
 {color:#caf0f8;
 margin-left:8.75px;
 margin-top:10px;}
+
+.username69
+{
+color:white;
+margin-left:8.75px;
+margin-top:10px;
+font-family: "Edu NSW ACT Cursive", cursive;
+}
 
 .interestbtn
 {
@@ -126,6 +135,17 @@ margin-top:10px;}
   width:40%;
   height:100%;
   border-radius: 10px;
+}
+
+.interestbtn:hover
+{
+  border:2px solid #ffafcc;
+}
+
+.interestbtn:focus
+{
+  background-color: #000814;
+  color: white;
 }
 
 .ignorebtn
@@ -138,10 +158,23 @@ margin-top:10px;}
   border-radius: 10px;
 }
 
-.user-button
+.ignorebtn:hover
 {
-  height:40px;
-  margin-top: 50px;
+  border:2px solid #800e13;
+}
+
+.ignorebtn:focus
+{
+  background-color: #000814;
+  color: white;
+}
+
+.user-button {
+  height: 40px;
+  position: absolute;
+  bottom: 10px;     /* <-- sticks 10px above bottom */
+  left: 0;
+  width: 100%;      /* span full width */
 }
 
 .user-button i 
@@ -346,6 +379,14 @@ width: 100%;
   margin-top: 5px;
   margin-left: 20px;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.req-con-photo img
+{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .req-con-box p
@@ -448,6 +489,32 @@ width: 100%;
   max-width: 350px;
   color: #0aff99;
 }
+
+.anchor-button
+{
+  color: blue;
+}
+
+.anchor-button:hover
+{
+  cursor: pointer;
+}
+
+button
+{
+  cursor:pointer;
+}
+
+.upload-button
+{
+  background-color: #580aff;
+  margin-right: 5px;
+  height:35px;
+  width:70px;
+  border-radius: 15px;
+}
+
+
 
 
 

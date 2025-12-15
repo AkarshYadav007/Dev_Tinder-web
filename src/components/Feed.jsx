@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFeed } from '../utils/feedSlice';
 import axios from 'axios';
 import UserCard from './UserCard';
+import EmptyPage from './EmptyPage';
 
 const Feed = () => {
 
@@ -18,9 +19,17 @@ const Feed = () => {
   }
 
   useEffect(() => {getfeed()},[])
-  return datu && (
+
+  if (!datu || datu.length === 0) {
+  return (<div className="connect-div1"><EmptyPage 
+    title="Feed is Empty"
+    message="Looks like your feed is empty for now"
+  /></div>)}
+
+  return(
     <div><UserCard user={datu[0]}/></div>
   )
 }
 
 export default Feed;
+

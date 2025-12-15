@@ -39,7 +39,7 @@ const Connections = () => {
         <div className="profile-box">Connections</div>
       </div>
       {userdata.map((item) => (
-  <ReqConCard key={item._id} firstName={item.FirstName+ " "+item.LastName} mode = "connections" />
+  <ReqConCard key={item._id} Photo={item.photo} firstName={item.FirstName+ " "+item.LastName} mode = "connections" />
 ))}
     </div>
   )

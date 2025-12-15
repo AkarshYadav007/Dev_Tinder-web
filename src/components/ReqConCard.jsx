@@ -1,10 +1,12 @@
 import React from 'react'
 
-const ReqConCard = ({firstName, age, gender, mode, id, onReview}) => {
+const ReqConCard = ({firstName, age, gender, mode, id, onReview, Photo}) => {
   return (
     <div className="req-con-container">
         <div className="req-con-box">
-            <div className="req-con-photo"></div>
+            <div className="req-con-photo">
+              <img src={Photo} />
+            </div>
             <div className="req-con-para">
           {/* Always show firstname */}
           {firstName}

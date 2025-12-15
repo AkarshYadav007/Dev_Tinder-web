@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [emailId, setemailId] = useState("");
 const [password, setPassword] = useState("");
+const [firstname, setfirstname] = useState("");
+const [lastname, setlastname] = useState("");
+const [alreadyUser, setAlreadyUser] = useState(true);
 const [error,seterror] = useState("");
 
 const dispatch = useDispatch()
@@ -32,6 +35,26 @@ const handleLogin = async () =>
     seterror(msg);
    }
   }
+
+  const handleSignUp = async () => 
+  {
+    if (!firstname || !lastname || !emailId || !password) {
+  return seterror("Please Input all the details");
+}
+
+   try{const res = await axios.post("http://localhost:3000/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
+  Password:password},{withCredentials: true})
+  const datu = res?.data
+  dispatch(addUser(datu))
+  navigate("/profile")
+  }
+   catch(err)
+   {
+    const msg = err?.response?.data.replace("ERROR: ", "") || "Something went wrong";
+    seterror(msg);
+   }
+  }
+
   return (
     <div
       className="
@@ -40,12 +63,30 @@ const handleLogin = async () =>
         bg-[linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://images.wallpapersden.com/image/download/windows-10-clean-dark_a2htamaUmZqaraWkpJRmbmdlrWZlbWU.jpg')]
       "
     >
-      <div className="bg-white w-[90%] h-[350px] max-w-[450px] min-w-[350px] shadow-[-2px 2px 15px rgba(0,0,0,0.5)] rounded-lg p-[55px] text-center">
+      <div className="bg-white w-[90%] h-auto max-w-[450px] min-w-[350px] shadow-[-2px 2px 15px rgba(0,0,0,0.5)] rounded-lg p-[55px] text-center">
         
         {/* Heading */}
         <h1 className="text-[30px] text-green-700">
-          Sign In
+          {alreadyUser ? "Sign In" : "Sign Up"}
         </h1>
+
+        {/* firstname */}
+        { !alreadyUser && <><div className="inputfield">
+          <input
+            type="text"
+            placeholder="Enter FirstName"
+            onChange={(e) => setfirstname(e.target.value)}
+          />
+        </div>
+
+        {/* lastname */}
+        <div className="inputfield">
+          <input
+            type="text"
+            placeholder="Enter LastName"
+            onChange={(e) => setlastname(e.target.value)}
+          />
+        </div></>}
 
         {/* Email */}
         <div className="inputfield">
@@ -67,13 +108,14 @@ const handleLogin = async () =>
           />
         </div>
 
-        <p>Do not have an account?<a href='#'> Click Here!</a></p>
+        <p>{alreadyUser ? "Do not have an account?" : "Already a user?" }<a className="anchor-button" onClick={() => {setAlreadyUser((value) => !value)}}> Click Here!</a></p>
         <p className="paro">{error}</p>
 
         {/* Button */}
-        <div className="buton">
-        <button className="w-[80%] h-[100%] bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition" onClick={handleLogin}>
-          Login
+        <div className="in-up-button">
+        <button className="w-[80%] h-[100%] bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition" 
+        onClick={alreadyUser ? handleLogin : handleSignUp}>
+          {alreadyUser ? "Sign In" : "Sign Up"}
         </button>
         </div>
 

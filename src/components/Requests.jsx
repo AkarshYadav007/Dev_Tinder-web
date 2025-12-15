@@ -11,6 +11,7 @@ const Requests = () => {
 
     const userdata = useSelector((store) =>store.requests)
 
+
     const reviewRequest = async(status, _id) => 
         {
             try
@@ -48,7 +49,7 @@ const Requests = () => {
       </div>
       {userdata.map((item) => (
   <ReqConCard key={item._id} firstName={item.FirstName+ " "+item.LastName} age={item.Age} gender={item.Gender} 
-              mode = "requests" id={item._id} onReview={reviewRequest}/>))}
+              mode = "requests" id={item._id} Photo={item.photo} onReview={reviewRequest}/>))}
     </div>)}
 
 export default Requests;
