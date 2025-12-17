@@ -14,7 +14,7 @@ const Connections = () => {
     const fetchConnections = async() => 
         {
           try{
-            const res = await axios.get("http://localhost:3000/user/connections",{withCredentials:true})
+            const res = await axios.get("/api/user/connections",{withCredentials:true})
 
     const datu = res?.data?.data;
     dispatch(addConnect(datu));

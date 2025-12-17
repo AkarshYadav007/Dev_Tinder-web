@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const fetchdatu = async() => 
     {
-      await axios.post("http://localhost:3000/logout",{},{withCredentials:true})
+      await axios.post("/api/logout",{},{withCredentials:true})
       dispatch(removeUser())
       dispatch(removeFeed())
       dispatch(removeConnect())

@@ -16,7 +16,7 @@ const Requests = () => {
         {
             try
             {
-                const res = await axios.post("http://localhost:3000/request/review/"+status+"/"+_id,{},{withCredentials:true})
+                const res = await axios.post("/api/request/review/"+status+"/"+_id,{},{withCredentials:true})
                 dispatch(removeRequest(_id))
             }
             catch (err)
@@ -27,7 +27,7 @@ const Requests = () => {
 
     const fetchRequests = async() => 
         {try{
-            const res = await axios.get("http://localhost:3000/user/requests/received",{withCredentials:true})
+            const res = await axios.get("/api/user/requests/received",{withCredentials:true})
             const datu = res?.data?.data
             dispatch(addRequest(datu))
             }

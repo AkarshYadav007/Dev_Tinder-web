@@ -12,7 +12,7 @@ const UserCard = ({user}) => {
       {
         try
         {
-          await axios.post("http://localhost:3000/request/send/"+status+"/"+_id,{},{withCredentials:true})
+          await axios.post("/api/request/send/"+status+"/"+_id,{},{withCredentials:true})
 
           dispatch(removeUserFromFeed(_id))
         }

@@ -14,7 +14,7 @@ const Feed = () => {
   { if (datu && datu.length > 0) return;
 
 
-    const res = await axios.get("http://localhost:3000/user/feed",{withCredentials:true})
+    const res = await axios.get("/api/user/feed",{withCredentials:true})
     dispatch(addFeed(res.data))
   }
 

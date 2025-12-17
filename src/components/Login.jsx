@@ -23,7 +23,7 @@ const handleLogin = async () =>
   return seterror("Please enter email and password.");
 }
 
-   try{const res = await axios.post("http://localhost:3000/login",{Email: emailId,
+   try{const res = await axios.post("/api/login",{Email: emailId,
   Password: password},{withCredentials: true})
   const datu = res?.data
   dispatch(addUser(datu))
@@ -42,7 +42,7 @@ const handleLogin = async () =>
   return seterror("Please Input all the details");
 }
 
-   try{const res = await axios.post("http://localhost:3000/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
+   try{const res = await axios.post("/api/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
   Password:password},{withCredentials: true})
   const datu = res?.data
   dispatch(addUser(datu))

@@ -20,7 +20,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/profile/view", {
+        const res = await axios.get("/api/profile/view", {
           withCredentials: true,
         });
         dispatch(addUser(res.data));
@@ -56,7 +56,7 @@ const saveprofile = async () => {
     }
 
     const res = await axios.patch(
-      "http://localhost:3000/profile/edit",
+      "/api/profile/edit",
       formData,
       {
         withCredentials: true,
