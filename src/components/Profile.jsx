@@ -55,14 +55,11 @@ const saveprofile = async () => {
       formData.append("photo", file);
     }
 
-    const res = await axios.patch(
+    const res = await axios.post(
       "/api/profile/edit",
       formData,
       {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        withCredentials: true
       }
     );
 
