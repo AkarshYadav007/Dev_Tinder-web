@@ -5,6 +5,7 @@ import UserCardEdit from "./UserCardEdit";
 import axios from "axios";
 import { addUser } from "../utils/userSlice";
 import ProfileSkeleton from "./ProfileSkeleton";
+import { BASE_URL } from "../utils/constants";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("/api/profile/view", {
+        const res = await axios.get(BASE_URL+"/profile/view", {
           withCredentials: true,
         });
         dispatch(addUser(res.data));
@@ -56,7 +57,7 @@ const saveprofile = async () => {
     }
 
     const res = await axios.post(
-      "/api/profile/edit",
+      BASE_URL+"/profile/edit",
       formData,
       {
         withCredentials: true

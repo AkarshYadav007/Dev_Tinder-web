@@ -4,6 +4,7 @@ import { addFeed } from '../utils/feedSlice';
 import axios from 'axios';
 import UserCard from './UserCard';
 import EmptyPage from './EmptyPage';
+import { BASE_URL } from '../utils/constants';
 
 const Feed = () => {
 
@@ -14,7 +15,7 @@ const Feed = () => {
   { if (datu && datu.length > 0) return;
 
 
-    const res = await axios.get("/api/user/feed",{withCredentials:true})
+    const res = await axios.get(BASE_URL+"/user/feed",{withCredentials:true})
     dispatch(addFeed(res.data))
   }
 

@@ -6,6 +6,7 @@ import { removeUser } from "../utils/userSlice";
 import { removeConnect } from '../utils/connectionSlice';
 import { removeFeed } from '../utils/feedSlice';
 import { removeRequests } from '../utils/requestSlice';
+import { BASE_URL } from '../utils/constants';
 
 const Navbar = () => {
 
@@ -15,7 +16,7 @@ const Navbar = () => {
 
   const fetchdatu = async() => 
     {
-      await axios.post("/api/logout",{},{withCredentials:true})
+      await axios.post(BASE_URL+"/logout",{},{withCredentials:true})
       dispatch(removeUser())
       dispatch(removeFeed())
       dispatch(removeConnect())

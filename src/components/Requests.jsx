@@ -4,6 +4,7 @@ import ReqConCard from "./ReqConCard"
 import { useDispatch, useSelector } from 'react-redux'
 import { addRequest, removeRequest } from '../utils/requestSlice'
 import EmptyPage from './EmptyPage'
+import { BASE_URL } from '../utils/constants'
 
 const Requests = () => {
 
@@ -16,7 +17,7 @@ const Requests = () => {
         {
             try
             {
-                const res = await axios.post("/api/request/review/"+status+"/"+_id,{},{withCredentials:true})
+                const res = await axios.post(BASE_URL+"/request/review/"+status+"/"+_id,{},{withCredentials:true})
                 dispatch(removeRequest(_id))
             }
             catch (err)
@@ -27,7 +28,7 @@ const Requests = () => {
 
     const fetchRequests = async() => 
         {try{
-            const res = await axios.get("/api/user/requests/received",{withCredentials:true})
+            const res = await axios.get(BASE_URL+"/user/requests/received",{withCredentials:true})
             const datu = res?.data?.data
             dispatch(addRequest(datu))
             }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../utils/constants';
  
 const Login = () => {
   const [emailId, setemailId] = useState("");
@@ -23,7 +24,7 @@ const handleLogin = async () =>
   return seterror("Please enter email and password.");
 }
 
-   try{const res = await axios.post("/api/login",{Email: emailId,
+   try{const res = await axios.post(BASE_URL+"/login",{Email: emailId,
   Password: password},{withCredentials: true})
   const datu = res?.data
   dispatch(addUser(datu))
@@ -42,7 +43,7 @@ const handleLogin = async () =>
   return seterror("Please Input all the details");
 }
 
-   try{const res = await axios.post("/api/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
+   try{const res = await axios.post(BASE_URL+"/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
   Password:password},{withCredentials: true})
   const datu = res?.data
   dispatch(addUser(datu))

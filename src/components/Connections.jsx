@@ -4,6 +4,7 @@ import ReqConCard from "./ReqConCard"
 import { useDispatch, useSelector } from 'react-redux'
 import {addConnect} from "../utils/connectionSlice"
 import EmptyPage from './EmptyPage'
+import { BASE_URL } from '../utils/constants'
 
 const Connections = () => {
 
@@ -14,7 +15,7 @@ const Connections = () => {
     const fetchConnections = async() => 
         {
           try{
-            const res = await axios.get("/api/user/connections",{withCredentials:true})
+            const res = await axios.get(BASE_URL+"/user/connections",{withCredentials:true})
 
     const datu = res?.data?.data;
     dispatch(addConnect(datu));
