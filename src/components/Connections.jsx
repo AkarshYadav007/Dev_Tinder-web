@@ -12,24 +12,27 @@ const Connections = () => {
 
     const userdata = useSelector((store) =>store.connections)
 
-    const fetchConnections = async() => 
-        {
-          try{
-            const res = await axios.get(BASE_URL+"/user/connections",{withCredentials:true})
+const fetchConnections = async () => {
+  if (userdata.length > 0) return;
+
+  try {
+    const res = await axios.get(
+      BASE_URL + "/user/connections",
+      { withCredentials: true }
+    );
 
     const datu = res?.data?.data;
     dispatch(addConnect(datu));
-  } 
-    catch (err)
-    {
-    console.log("FETCH CONNECTIONS ERROR:", err);
-    }
+  } catch (err) {
+    console.error("ERROR:", err);
+  }
 };
 
-        useEffect(() => {fetchConnections()},[])
 
-        if (!userdata || userdata.length === 0) {
-  return (<div className="connect-div1"><EmptyPage 
+        useEffect(() => {fetchConnections()},[userdata])
+
+        if (userdata.length === 0) {
+  return (<div className="connect-div1"><EmptyPage
     title="No Connections Found"
     message="Get a Life!!!"
   /></div>)}

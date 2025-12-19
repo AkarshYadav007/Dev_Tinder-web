@@ -15,23 +15,7 @@ const Profile = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [about, setAbout] = useState("");
-  const [file, setFile] = useState("");
-
-  // 1️⃣ Fetch user on page load
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get(BASE_URL+"/profile/view", {
-          withCredentials: true,
-        });
-        dispatch(addUser(res.data));
-      } catch (err) {
-        console.log("Profile fetch error:", err);
-      }
-    };
-
-    fetchProfile();
-  }, [dispatch]);
+  const [file, setFile] = useState(null); // ✅ FIX: File only
 
   // 2️⃣ Sync local state when Redux user updates
   useEffect(() => {
@@ -39,44 +23,40 @@ const Profile = () => {
       setAge(user.Age || "");
       setGender(user.Gender || "");
       setAbout(user.about || "");
-      setFile(user.photo)
+      setFile(null); // ✅ FIX: never set URL into file
     }
   }, [user]);
 
   // 3️⃣ Save profile changes
-const saveprofile = async () => {
-  try {
-    const formData = new FormData();
-    formData.append("Age", age);
-    formData.append("Gender", gender);
-    formData.append("about", about);
+  const saveprofile = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("Age", age);
+      formData.append("Gender", gender);
+      formData.append("about", about);
 
-    // Only append if user selected a file
-    if (file instanceof File) {
-      formData.append("photo", file);
-    }
-
-    const res = await axios.post(
-      BASE_URL+"/profile/edit",
-      formData,
-      {
-        withCredentials: true
+      if (file instanceof File) {
+        formData.append("photo", file);
       }
-    );
 
-    dispatch(addUser(res.data));
-    alert("Profile updated!");
-  } catch (err) {
-    console.log("Update error:", err);
-    alert("Failed to update profile");
-  }
-};
+      const res = await axios.post(
+        BASE_URL + "/profile/edit",
+        formData,
+        { withCredentials: true }
+      );
+
+      dispatch(addUser(res.data.user));
+      alert("Profile updated!");
+    } catch (err) {
+      console.log("Update error:", err);
+      alert("Failed to update profile");
+    }
+  };
 
   // 4️⃣ While user is loading
-if (!user || Object.keys(user).length === 0) {
-  return <ProfileSkeleton />;
-}
-
+  if (!user) {
+    return <ProfileSkeleton />;
+  }
 
   return (
     <div>
@@ -86,7 +66,6 @@ if (!user || Object.keys(user).length === 0) {
 
       <div className="temp-3">
         <div className="temp-1">
-
           <p className="para-pro">Age</p>
           <EditableField value={age} onChange={setAge} />
 
@@ -97,15 +76,18 @@ if (!user || Object.keys(user).length === 0) {
           <EditableField value={about} onChange={setAbout} />
 
           <p className="para-pro">Upload Photo</p>
-      <div className="profile-edits">
-  <div>
 
-    <input
-      type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])}
-    />
-    <button className="upload-button">Upload</button>
-  </div>
-</div>
+          {/* ⛔ UPLOAD PART UNCHANGED */}
+          <div className="profile-edits">
+            <div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <button className="upload-button">Upload</button>
+            </div>
+          </div>
 
           <div className="change-save-button">
             <button onClick={saveprofile}>Save Changes</button>
@@ -113,16 +95,18 @@ if (!user || Object.keys(user).length === 0) {
         </div>
 
         <div className="profile-mc-div">
-          <UserCardEdit 
-  datu={{ 
-    firstName: user.FirstName, 
-    lastName: user.LastName, 
-    age, 
-    Photo: file instanceof File ? URL.createObjectURL(file) : user.photo,
-    gender, 
-    about
-  }} 
-/>
+          <UserCardEdit
+            datu={{
+              firstName: user.FirstName,
+              lastName: user.LastName,
+              age,
+              Photo: file
+                ? URL.createObjectURL(file) // new preview
+                : user.photo,               // existing photo
+              gender,
+              about,
+            }}
+          />
         </div>
       </div>
     </div>

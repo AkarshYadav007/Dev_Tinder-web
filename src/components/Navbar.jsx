@@ -38,9 +38,11 @@ const Navbar = () => {
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src={user.photo} />
+            <img
+  alt="Tailwind CSS Navbar component"
+  src={user.photo || "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
+/>
+
         </div>
       </div>
       <ul

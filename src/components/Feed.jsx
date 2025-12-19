@@ -12,16 +12,16 @@ const Feed = () => {
   const datu = useSelector((store) => store.feed);
 
   const getfeed = async() => 
-  { if (datu && datu.length > 0) return;
+  { if (datu.length > 0) return;
 
 
     const res = await axios.get(BASE_URL+"/user/feed",{withCredentials:true})
     dispatch(addFeed(res.data))
   }
 
-  useEffect(() => {getfeed()},[])
+  useEffect(() => {getfeed()},[datu])
 
-  if (!datu || datu.length === 0) {
+  if (datu.length === 0) {
   return (<div className="connect-div1"><EmptyPage 
     title="Feed is Empty"
     message="Looks like your feed is empty for now"

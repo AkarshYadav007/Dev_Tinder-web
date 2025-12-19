@@ -27,7 +27,7 @@ const handleLogin = async () =>
    try{const res = await axios.post(BASE_URL+"/login",{Email: emailId,
   Password: password},{withCredentials: true})
   const datu = res?.data
-  dispatch(addUser(datu))
+  dispatch(addUser(datu.user))
   navigate("/")
   }
    catch (err) {
@@ -52,7 +52,7 @@ const handleLogin = async () =>
    try{const res = await axios.post(BASE_URL+"/signup",{FirstName:firstname, LastName:lastname, Email: emailId,
   Password:password},{withCredentials: true})
   const datu = res?.data
-  dispatch(addUser(datu))
+  dispatch(addUser(datu.user))
   navigate("/profile")
   }
    catch(err)

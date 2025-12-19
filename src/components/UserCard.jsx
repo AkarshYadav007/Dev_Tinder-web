@@ -19,7 +19,7 @@ const UserCard = ({user}) => {
         }
         catch (err)
         {
-
+          console.error("FEED ACTION ERROR:", err);
         }}
 
   return (
