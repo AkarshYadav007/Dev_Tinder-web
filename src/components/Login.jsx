@@ -30,11 +30,17 @@ const handleLogin = async () =>
   dispatch(addUser(datu))
   navigate("/")
   }
-   catch(err)
-   {
-    const msg = err?.response?.data.replace("ERROR: ", "") || "Something went wrong";
-    seterror(msg);
-   }
+   catch (err) {
+  const data = err?.response?.data;
+
+  const msg =
+    typeof data === "string"
+      ? data.replace("ERROR: ", "")
+      : data?.message?.replace("ERROR: ", "") || "Something went wrong";
+
+  seterror(msg);
+}
+
   }
 
   const handleSignUp = async () => 
