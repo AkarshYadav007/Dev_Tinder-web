@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
 
 const ReqConCard = ({firstName, age, gender, mode, id, onReview, Photo}) => {
   return (
@@ -19,7 +21,7 @@ const ReqConCard = ({firstName, age, gender, mode, id, onReview, Photo}) => {
         {mode === "connections" ? (
         <>
           <button className="req-con-btn-1">View Profile</button>
-          <button className="req-con-btn-2">Chat</button>
+          <Link to={"/chat/"+id}><button className="req-con-btn-2">Chat</button></Link>
         </>
       ) : (
         <>
